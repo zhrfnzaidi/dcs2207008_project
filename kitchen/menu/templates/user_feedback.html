@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            background-color: rgb(234, 255, 0);
+        }
+        img{
+            width: 50px;
+            height: 45px;
+        }
+    </style>
+</head>
+<body>
+    {% load static %} 
+    <center> <h1><img src="{% static "images/image.jpg" %}" alt="home" />KITCHEN FEEDBACK</h1></center>
+    <br><br>
+    <center></center>
+    <br> 
+    <center><form  action="user_feedback" method="post">
+        {% csrf_token %}
+            Name: <input name="name" type="text">
+            <br><br>
+            Text: <input name="text" type="text">
+            <br><br>
+            <input type="submit" value="SAVE">
+    </form></center>
+    <br><br>
+<center> <h2>Feedback</h2></center>
+<br><br>
+<center>{% for data in allfeedback %}
+    
+   <input type="text" value="{{data.text}}"> <br>
+    Feedback by: {{data.name}}
+    <br><br>
+{% endfor %}</center>
+
+</body>
+</html>
